@@ -1,0 +1,86 @@
+.hero-section {
+  position: relative;
+  height: 80vh; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  overflow: hidden;
+  
+  background: url('../../public/LEGgINS\ procesadasemillas\ _40.JPG') no-repeat center center/cover;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding-left: 10%; 
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-family: 'Lora', serif; 
+  margin-bottom: 20px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 20px;
+}
+
+.btn-filled {
+  padding: 15px 35px;
+  background-color: #76b82a; 
+  color: white;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.btn-outline {
+  padding: 15px 35px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.btn-filled:hover {
+  background-color: #65a122;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: black;
+}
+
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.5rem; }
+  .hero-content { padding: 0 20px; text-align: center; }
+  .hero-btns { justify-content: center; }
+}
