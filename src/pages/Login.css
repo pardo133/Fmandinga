@@ -1,63 +1,118 @@
-.login-container {
+/* Login.css */
+
+.login-wrapper {
   display: flex;
+  min-height: 90vh;
   justify-content: center;
   align-items: center;
-  min-height: 80vh; 
-  background-color: #ffffff;
+  background: #ffffff; /* Fondo limpio */
 }
 
 .login-box {
+  width: 100%;
+  max-width: 440px;
+  padding: 50px 40px;
   background: #ffffff;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
-  width: 100%;
-  max-width: 400px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Sombra difusa moderna */
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s ease;
+}
+
+.login-header {
   text-align: center;
-  border: 1px solid #eee;
+  margin-bottom: 40px;
 }
 
-.login-box h2 {
-  margin-bottom: 25px;
-  color: #1a1a1a;
-  font-weight: 700;
+.login-header h2 {
+  font-size: 2rem;
+  color: #111;
+  font-weight: 800;
+  margin-bottom: 10px;
 }
 
-.input-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.input-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff !important; 
-  color: #000 !important; 
+.login-header p {
+  color: #777;
   font-size: 1rem;
 }
 
-.btn-login {
-  width: 100%;
-  padding: 12px;
-  background-color: #76b82a; 
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.3s;
+.input-field {
+  margin-bottom: 24px;
 }
 
-.btn-login:hover {
-  background-color: #65a122;
+.input-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 14px 18px;
+  background: #fdfdfd;
+  border: 2px solid #f1f1f1;
+  border-radius: 14px;
+  font-size: 1rem;
+  color: #111;
+  transition: all 0.25s ease;
+}
+
+.input-field input:focus {
+  outline: none;
+  border-color: #76b82a; /* Tu verde */
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(118, 184, 42, 0.1);
+}
+
+.btn-primary-modern {
+  width: 100%;
+  padding: 16px;
+  background: #76b82a;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(118, 184, 42, 0.2);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-primary-modern:hover {
+  background: #65a122;
   transform: translateY(-2px);
+  box-shadow: 0 15px 25px rgba(118, 184, 42, 0.3);
+}
+
+.login-footer-links {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.login-footer-links p {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.login-footer-links a {
+  color: #76b82a;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.login-footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Evita que los inputs se vean oscuros por culpa de estilos globales */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
