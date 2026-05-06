@@ -1,0 +1,106 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.auth-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px; /* Un poco más ancho para los campos dobles */
+  border: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.auth-box h2 {
+  color: #1a1a1a;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+/* Register.css */
+
+.input-row {
+  display: flex;
+  gap: 30px; 
+  margin-bottom: 20px; 
+}
+
+.input-group {
+  flex: 1; 
+  text-align: left;
+}
+
+
+.input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px; 
+  color: #333;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #fff !important;
+  color: #1a1a1a !important;
+  transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #76b82a; 
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 14px;
+  background-color: #76b82a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+  background-color: #65a122;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(118, 184, 42, 0.2);
+}
+
+.auth-footer {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.auth-footer span {
+  color: #76b82a;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .input-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
