@@ -5,14 +5,23 @@ import './Login.css';
 const Login = () => {
   const { register, handleSubmit } = useForm();
 
-  const onSubmit = async (data: any) => {
-    try {
-      const response = await axios.post(`${(import.meta as any).env.VITE_API_URL}/users/login`, data);
-      alert('Sesión iniciada');
-    } catch (error) {
-      alert('Error en las credenciales');
-    }
-  };
+const onSubmit = async (data: any) => {
+  try {
+    const response = await axios.post(`${(import.meta as any).env.VITE_API_URL}/users/login`, data);
+    
+    
+    const userToStore = response.data.user || response.data;
+    
+    localStorage.setItem('user', JSON.stringify(userToStore));
+    console.log("Usuario guardado:", userToStore);
+
+    
+    window.location.href = "/"; 
+    
+  } catch (error) {
+    alert('Error en las credenciales');
+  }
+};
 
   return (
     <div className="login-container">
