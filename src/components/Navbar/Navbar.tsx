@@ -4,7 +4,7 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [user, setUser] = useState<any>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // <--- 1. AÑADE ESTO
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -22,7 +22,7 @@ const Navbar = () => {
     window.location.href = "/";
   };
 
-  // Funciones para el menú
+  
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -33,14 +33,14 @@ const Navbar = () => {
           <img src="/logo.jpg" alt="Logo" className="logo-img" />
         </NavLink>
 
-        {/* --- 2. ICONO HAMBURGUESA (MÉTELO AQUÍ) --- */}
+        
         <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
           <span></span>
           <span></span>
           <span></span>
         </div>
 
-        {/* --- 3. AÑADE LA CLASE DINÁMICA 'active' --- */}
+       
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li><NavLink to="/productos" className="nav-links" onClick={closeMenu}>Productos</NavLink></li>
 

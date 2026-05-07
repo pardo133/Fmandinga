@@ -20,12 +20,12 @@
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 20px; /* Esto separa Login de Registro obligatoriamente */
+  gap: 20px; 
   margin: 0;
   padding: 0;
 }
 
-/* Enlaces base - Forzamos que no sean rosas */
+
 .nav-links {
   text-decoration: none;
   color: #333 !important;
@@ -37,7 +37,7 @@
   color: #76b82a !important;
 }
 
-/* Botón Registro Verde */
+
 .nav-register-btn {
   background-color: #76b82a;
   color: white !important;
@@ -48,7 +48,7 @@
   display: inline-block;
 }
 
-/* Botón Perfil (Cápsula) */
+
 .profile-btn {
   display: flex;
   align-items: center;
@@ -84,9 +84,9 @@
   font-weight: 600;
   cursor: pointer;
 }
-/* Estilo base del icono hamburguesa */
+
 .menu-icon {
-  display: none; /* Se oculta en escritorio */
+  display: none; 
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
@@ -101,19 +101,19 @@
   transition: 0.3s;
 }
 
-/* Transformación a X */
+
 .menu-icon.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .menu-icon.open span:nth-child(2) { opacity: 0; }
 .menu-icon.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Móvil (Menos de 960px) */
+
 @media screen and (max-width: 960px) {
   .menu-icon { display: flex; }
 
   .nav-menu {
     position: absolute;
     top: 80px;
-    left: -100%; /* Escondido */
+    left: -100%; 
     flex-direction: column;
     width: 100%;
     height: 90vh;
@@ -124,6 +124,6 @@
   }
 
   .nav-menu.active {
-    left: 0; /* Aparece */
+    left: 0; 
   }
 }
