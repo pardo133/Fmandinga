@@ -4,6 +4,7 @@ import Register from './pages/Register';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero';
 import './App.css';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -31,7 +32,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </Router>
+    
   );
 }
 
