@@ -14,7 +14,7 @@ const Hero = () => {
         </p>
         <div className="hero-btns">
           <button className="btn-filled">VER PRODUCTOS</button>
-          <button className="btn-outline">SABER MÁS</button>
+          <a href="#sostenibilidad" className="btn-outline">SABER MÁS</a>
         </div>
       </div>
     </section>

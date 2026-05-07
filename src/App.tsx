@@ -1,40 +1,40 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero';
-import './App.css';
 import Footer from './components/footer/Footer';
+import Sostenibilidad from './components/Navbar/sostenibilidad'; 
+
+
+import Login from './pages/Login'; 
+import Register from './pages/Register';
+
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-       
-        <Route path="/" element={
-          <>
-            <Hero />
-            <div className="container" style={{ padding: '2rem' }}>
-              <h1>Bienvenido a La Mandinga</h1>
-              <p>Tu marketplace de confianza.</p>
-            </div>
-          </>
-        } />
-
+      <div className="App">
+        <Navbar />
         
-        <Route path="/productos" element={
-          <div className="container" style={{ padding: '2rem' }}>
-            <h1>Nuestros Productos</h1>
-          </div>
-        } />
+        <Routes>
+          {/* INICIO: Aquí se ve el Hero y la Sostenibilidad */}
+          <Route path="/" element={
+            <>
+              <Hero />
+              <Sostenibilidad />
+            </>
+          } />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      <Footer />
+          {/* PRODUCTOS: Cambia el <div> por tu componente de productos real */}
+          
+
+          {/* LOGIN Y REGISTER: Ahora sí se abrirán al pulsar los botones */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+
+        <Footer />
+      </div>
     </Router>
-    
   );
 }
 
