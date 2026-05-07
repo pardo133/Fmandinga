@@ -1,9 +1,18 @@
 .navbar {
   height: 80px;
-  background: white;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #f0f0f0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  
+  
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  
+ 
+  border-bottom: none;
 }
 
 .navbar-container {
@@ -27,25 +36,32 @@
 
 
 .nav-links {
-  text-decoration: none;
-  color: #333 !important;
-  font-weight: 600;
-  transition: color 0.3s;
+  color: white !important;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.3); 
 }
 
 .nav-links:hover {
-  color: #76b82a !important;
+  color: #76b82a !important; 
 }
 
 
+
 .nav-register-btn {
-  background-color: #76b82a;
+  background-color: #76b82a !important;
   color: white !important;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 10px 22px;
+  border-radius: 50px; 
+  font-weight: 600;
   text-decoration: none;
-  font-weight: 700;
-  display: inline-block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(118, 184, 42, 0.3);
+}
+.nav-register-btn:hover {
+  background-color: #65a122 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(118, 184, 42, 0.4);
 }
 
 
@@ -126,4 +142,8 @@
   .nav-menu.active {
     left: 0; 
   }
+}
+.logo-img {
+  height: 50px;
+   
 }
