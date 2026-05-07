@@ -13,7 +13,7 @@
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: 500px; /* Un poco más ancho para los campos dobles */
+  max-width: 500px; 
   border: 1px solid #f0f0f0;
   text-align: center;
 }
@@ -30,7 +30,7 @@
   font-size: 0.95rem;
 }
 
-/* Register.css */
+
 
 .input-row {
   display: flex;

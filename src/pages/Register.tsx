@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { registerUser } from '../service/authService';
 import { useNavigate } from 'react-router-dom';
-import './Register.css'; // Asegúrate de crear este archivo
+import './Register.css'; 
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
