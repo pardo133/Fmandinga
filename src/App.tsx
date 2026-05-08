@@ -4,7 +4,7 @@ import Hero from './components/Hero';
 import Footer from './components/footer/Footer';
 import Sostenibilidad from './components/Navbar/sostenibilidad'; 
 
-import Productos from './pages/Productos';
+import Productos from './pages/productos';
 import Login from './pages/Login'; 
 import Register from './pages/Register';
 
@@ -26,10 +26,11 @@ function App() {
 
           
           
-
+          
           <Route path="/productos" element={<Productos />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/nosotros" element={<SobreNosotros />} />
         </Routes>
 
         <Footer />
