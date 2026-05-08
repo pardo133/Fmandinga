@@ -3,8 +3,8 @@ import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero';
 import Footer from './components/footer/Footer';
 import Sostenibilidad from './components/Navbar/sostenibilidad'; 
-
-import Productos from './pages/productos';
+import SobreNosotros from './components/sobreNosotros';
+import Productos from './pages/Productos';
 import Login from './pages/Login'; 
 import Register from './pages/Register';
 
