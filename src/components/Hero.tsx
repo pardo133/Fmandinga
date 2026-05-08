@@ -1,5 +1,5 @@
 import './Hero.css';
-
+import { Link } from 'react-router-dom';
 const Hero = () => {
   return (
     <section className="hero-section">
@@ -13,9 +13,15 @@ const Hero = () => {
           de leggings diseñada para adaptarse a cada uno de tus movimientos.
         </p>
         <div className="hero-btns">
-          <button className="btn-filled">VER PRODUCTOS</button>
-          <a href="#sostenibilidad" className="btn-outline">SABER MÁS</a>
-        </div>
+  
+  <Link to="/productos" style={{ textDecoration: 'none' }}>
+    <button className="btn-filled">VER PRODUCTOS</button>
+  </Link>
+
+  <a href="#sostenibilidad" className="btn-outline">
+    SABER MÁS
+  </a>
+</div>
       </div>
     </section>
   );
