@@ -109,3 +109,35 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* ── SweetAlert2 — tema Mandinga ─────────────────────────────────────── */
+.swal2-popup {
+  border-radius: 18px !important;
+  font-family: inherit !important;
+}
+
+.swal-btn-confirm {
+  padding: 11px 32px;
+  background: #76b82a;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.swal-btn-confirm:hover { background: #65a122; }
+
+.swal-btn-cancel {
+  padding: 11px 32px;
+  background: #f2f2f2;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.swal-btn-cancel:hover { background: #e0e0e0; }

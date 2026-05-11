@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { registerUser } from '../service/authService';
 import { useNavigate } from 'react-router-dom';
-import './Register.css'; 
+import { swalOk, swalError } from '../lib/swal';
+import './Register.css';
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
@@ -10,11 +11,11 @@ const Register = () => {
   const onSubmit = async (data: any) => {
     try {
       await registerUser(data);
-      alert('¡Usuario registrado con éxito!');
+      await swalOk('¡Cuenta creada!', 'Ya puedes iniciar sesión');
       navigate('/login');
     } catch (error) {
       console.error('Error en el registro:', error);
-      alert('Hubo un error al registrar el usuario.');
+      swalError('Error en el registro', 'Inténtalo de nuevo');
     }
   };
 

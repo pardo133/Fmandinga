@@ -1,0 +1,74 @@
+.cart-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1998;
+
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #8fd63a 0%, #76b82a 60%, #5e9620 100%);
+  color: #fff;
+  box-shadow:
+    0 6px 20px rgba(118, 184, 42, 0.45),
+    0 2px 6px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-fab:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow:
+    0 10px 28px rgba(118, 184, 42, 0.55),
+    0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.cart-fab:active {
+  transform: scale(0.96);
+}
+
+.cart-fab-icon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.cart-fab-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 11px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 22px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.5);
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .cart-fab {
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .cart-fab-icon {
+    width: 22px;
+    height: 22px;
+  }
+}

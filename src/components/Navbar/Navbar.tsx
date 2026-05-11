@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
-import { useCart } from '../../context/CartContext';
 import { useUser } from '../../context/UserContext';
 
 const Navbar = () => {
   const { user, logout } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { totalItems, toggleCart } = useCart();
 
   const initials = user
     ? `${user.nombre?.charAt(0) ?? ''}${user.apellido?.charAt(0) ?? ''}`.toUpperCase() || 'U'
@@ -35,19 +33,6 @@ const Navbar = () => {
           {user ? (
             <>
               <li>
-                <button
-                  id="cart-icon-btn"
-                  className="cart-nav-btn"
-                  onClick={() => { closeMenu(); toggleCart(); }}
-                  aria-label="Carrito"
-                >
-                  <span className="cart-icon-emoji">🛒</span>
-                  {totalItems > 0 && (
-                    <span className="cart-badge">{totalItems}</span>
-                  )}
-                </button>
-              </li>
-              <li>
                 <NavLink to="/perfil" className="profile-btn" onClick={closeMenu}>
                   <div className="avatar-circle">
                     {initials}
@@ -59,19 +44,6 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <li>
-                <button
-                  id="cart-icon-btn"
-                  className="cart-nav-btn"
-                  onClick={() => { closeMenu(); toggleCart(); }}
-                  aria-label="Carrito"
-                >
-                  <span className="cart-icon-emoji">🛒</span>
-                  {totalItems > 0 && (
-                    <span className="cart-badge">{totalItems}</span>
-                  )}
-                </button>
-              </li>
               <li><NavLink to="/login" className="nav-links" onClick={closeMenu}>Login</NavLink></li>
               <li><NavLink to="/register" className="nav-register-btn" onClick={closeMenu}>Registro</NavLink></li>
             </>

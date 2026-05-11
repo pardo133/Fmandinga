@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import { CartProvider } from './context/CartContext';
 import { UserProvider } from './context/UserContext';
 import CartDrawer from './components/Cart/CartDrawer';
+import CartFab from './components/Cart/CartFab';
 import Success from './pages/Success';
 import Checkout from './pages/Checkout';
 import Perfil from './pages/Perfil';
@@ -22,6 +23,7 @@ function App() {
         <div className="App">
           <Navbar />
           <CartDrawer />
+          <CartFab />
 
           <Routes>
             <Route path="/" element={

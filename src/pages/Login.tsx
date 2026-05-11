@@ -35,28 +35,29 @@ export default Login;
 NOTA: este codigo de arriba se conserva porque ha habido que sustituirlo por el codigo que viene debajo. Se sustituye para hacer upgrade al codigo para cookies, pero este codigo (basico) de aqui encima FUNCIONA. Se conserva como codigo de rescate por prevencion de una posible urgencia (sin cookies)*/
 
 import { useForm } from 'react-hook-form';
-import { loginUser } from '../service/authService'; 
-import './Login.css'; 
+import { loginUser } from '../service/authService';
+import { swalOk, swalError } from '../lib/swal';
+import './Login.css';
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data: any) => {
     try {
-      
-      const responseData = await loginUser(data); 
-      
+
+      const responseData = await loginUser(data);
+
       console.log('Login exitoso:', responseData);
 
-     
+
       localStorage.setItem('user', JSON.stringify(responseData.user || responseData));
-      
-      alert('¡Sesión iniciada con éxito!');
-      window.location.href = "/"; 
+
+      await swalOk('¡Bienvenido!', 'Sesión iniciada correctamente');
+      window.location.href = "/";
 
     } catch (error) {
       console.error('Error al loguear:', error);
-      alert('Error en las credenciales');
+      swalError('Error al iniciar sesión', 'Comprueba tu correo y contraseña');
     }
   };
 
