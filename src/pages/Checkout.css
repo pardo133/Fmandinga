@@ -1,0 +1,366 @@
+/* ── Page layout ────────────────────────────────────────────────────────── */
+
+.co-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.co-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1a3a1a;
+  margin: 0 0 32px;
+}
+
+.co-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .co-grid {
+    grid-template-columns: 1fr;
+  }
+  .co-right {
+    order: -1;
+  }
+}
+
+/* ── Sections ────────────────────────────────────────────────────────────── */
+
+.co-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+.co-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a3a1a;
+  margin: 0 0 20px;
+}
+
+/* ── Shipping form ───────────────────────────────────────────────────────── */
+
+.co-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.co-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.co-full {
+  grid-column: 1 / -1;
+}
+
+.co-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #8B8E98;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.co-input {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 9px;
+  border: 1px solid #e5e5e5;
+  background: #f7f7f7;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  outline: none;
+  transition: all 0.25s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.co-input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #1a3a1a;
+  background: #fff;
+}
+
+.co-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238B8E98' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* ── UIverse payment widget ──────────────────────────────────────────────── */
+
+.modal {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 16px;
+}
+
+.uiv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.payment--options {
+  display: grid;
+  grid-template-columns: 33% 34% 33%;
+  gap: 12px;
+}
+
+.payment--options button {
+  height: 52px;
+  background: #F2F2F2;
+  border-radius: 11px;
+  padding: 0;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.payment--options button:hover {
+  background: #e6e6e6;
+}
+
+.payment--options button svg {
+  height: 18px;
+}
+
+.payment--options button:last-child svg {
+  height: 22px;
+}
+
+.separator {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 10px;
+  color: #8B8E98;
+  align-items: center;
+}
+
+.separator > p {
+  word-break: keep-all;
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: 11px;
+  margin: 0;
+}
+
+.separator .line {
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: #e8e8e8;
+  margin: 0;
+}
+
+.credit-card-info--form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 12px;
+}
+
+.input_label {
+  font-size: 10px;
+  color: #8B8E98;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.input_field {
+  width: 100%;
+  height: 42px;
+  padding: 0 0 0 14px;
+  border-radius: 9px;
+  outline: none;
+  background-color: #F2F2F2;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  box-sizing: border-box;
+}
+
+.input_field:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #242424;
+  background-color: #fff;
+}
+
+.input_field::-webkit-outer-spin-button,
+.input_field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input_field[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* ── Order summary ───────────────────────────────────────────────────────── */
+
+.co-right {
+  position: sticky;
+  top: 100px;
+}
+
+.co-summary {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.co-summary-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.co-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.co-summary-img {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: #f2f2f2;
+}
+
+.co-summary-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.co-summary-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1a3a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.co-summary-qty {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.co-summary-price {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a3a1a;
+  white-space: nowrap;
+}
+
+.co-summary-divider {
+  height: 1px;
+  background: #eee;
+  margin: 4px 0;
+}
+
+.co-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.co-free {
+  color: #76b82a;
+  font-weight: 600;
+}
+
+.co-total-row {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1a3a1a;
+}
+
+/* ── Pay button ──────────────────────────────────────────────────────────── */
+
+.co-pay-btn {
+  width: 100%;
+  height: 52px;
+  border: 0;
+  border-radius: 11px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(180deg, #363636 0%, #1B1B1B 50%, #000000 100%);
+  box-shadow: 0 0 0 0 #fff, 0 0 0 0 #0000003a;
+  transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  letter-spacing: 0.3px;
+}
+
+.co-pay-btn:hover:not(:disabled) {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0000003a;
+}
+
+.co-pay-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.co-error {
+  font-size: 0.85rem;
+  color: #e74c3c;
+  text-align: center;
+  margin: 0;
+}
+
+.co-secure-note {
+  font-size: 0.78rem;
+  color: #aaa;
+  text-align: center;
+  margin: 0;
+}

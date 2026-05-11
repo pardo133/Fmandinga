@@ -1,28 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
+import { useCart } from '../../context/CartContext';
+import { useUser } from '../../context/UserContext';
 
 const Navbar = () => {
-  const [user, setUser] = useState<any>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const { user, logout } = useUser();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { totalItems, toggleCart } = useCart();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (e) {
-        localStorage.removeItem('user');
-      }
-    }
-  }, []);
+  const initials = user
+    ? `${user.nombre?.charAt(0) ?? ''}${user.apellido?.charAt(0) ?? ''}`.toUpperCase() || 'U'
+    : 'U';
 
-  const logout = () => {
-    localStorage.removeItem('user');
-    window.location.href = "/";
-  };
-
-  
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -33,24 +23,34 @@ const Navbar = () => {
           <img src="/logo.jpg" alt="Logo" className="logo-img" />
         </NavLink>
 
-        
         <div className={`menu-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
           <span></span>
           <span></span>
           <span></span>
         </div>
 
-       
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li><NavLink to="/productos" className="nav-links" onClick={closeMenu}>Productos</NavLink></li>
 
           {user ? (
             <>
-              <li><NavLink to="/carrito" className="nav-icon" onClick={closeMenu}>🛒</NavLink></li>
+              <li>
+                <button
+                  id="cart-icon-btn"
+                  className="cart-nav-btn"
+                  onClick={() => { closeMenu(); toggleCart(); }}
+                  aria-label="Carrito"
+                >
+                  <span className="cart-icon-emoji">🛒</span>
+                  {totalItems > 0 && (
+                    <span className="cart-badge">{totalItems}</span>
+                  )}
+                </button>
+              </li>
               <li>
                 <NavLink to="/perfil" className="profile-btn" onClick={closeMenu}>
                   <div className="avatar-circle">
-                    {user.nombre?.charAt(0).toUpperCase() || 'U'}
+                    {initials}
                   </div>
                   <span className="profile-text">Tu Perfil</span>
                 </NavLink>
@@ -59,6 +59,19 @@ const Navbar = () => {
             </>
           ) : (
             <>
+              <li>
+                <button
+                  id="cart-icon-btn"
+                  className="cart-nav-btn"
+                  onClick={() => { closeMenu(); toggleCart(); }}
+                  aria-label="Carrito"
+                >
+                  <span className="cart-icon-emoji">🛒</span>
+                  {totalItems > 0 && (
+                    <span className="cart-badge">{totalItems}</span>
+                  )}
+                </button>
+              </li>
               <li><NavLink to="/login" className="nav-links" onClick={closeMenu}>Login</NavLink></li>
               <li><NavLink to="/register" className="nav-register-btn" onClick={closeMenu}>Registro</NavLink></li>
             </>
