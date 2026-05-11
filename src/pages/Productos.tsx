@@ -10,16 +10,16 @@ const productosData = [
   { id: 4, nombre: "Leggin Black", precio: 25.00, categoria: "legins", imagenes: ["/productos/legins/black.JPG", "/productos/legins/black1.JPG", "/productos/legins/black2.JPG", "/productos/legins/black3.JPG"] },
 
   // CAMISETAS
-  { id: 5, nombre: "Camiseta Dry-Fit", precio: 19.99, categoria: "camisetas", imagenes: ["/productos/camisetas/c1.jpg"] },
-  { id: 6, nombre: "Top Crop Mandinga", precio: 15.99, categoria: "camisetas", imagenes: ["/productos/camisetas/c2.jpg"] },
-  { id: 7, nombre: "Camiseta Tirantes", precio: 18.00, categoria: "camisetas", imagenes: ["/productos/camisetas/c3.jpg"] },
-  { id: 8, nombre: "Sudadera Eco", precio: 39.99, categoria: "camisetas", imagenes: ["/productos/camisetas/c4.jpg"] },
+  { id: 5, nombre: "Camiseta Dry-Fit", precio: 19.99, categoria: "camisetas", imagenes: ["/productos/camisetas/cami1.webp"] },
+  { id: 6, nombre: "Top Crop Mandinga", precio: 15.99, categoria: "camisetas", imagenes: ["/productos/camisetas/cami2.JPG"] },
+  { id: 7, nombre: "Camiseta Tirantes", precio: 18.00, categoria: "camisetas", imagenes: ["/productos/camisetas/cami3.webp"] },
+  { id: 8, nombre: "Sudadera Eco", precio: 39.99, categoria: "camisetas", imagenes: ["/productos/camisetas/cami4.webp"] },
 
   // ZAPATILLAS
-  { id: 9, nombre: "Zapa Runner Pro", precio: 89.99, categoria: "zapatillas", imagenes: ["/productos/zapas/z1.jpg"] },
-  { id: 10, nombre: "Zapa Gym Master", precio: 75.00, categoria: "zapatillas", imagenes: ["/productos/zapas/z2.jpg"] },
-  { id: 11, nombre: "Zapa Trail", precio: 95.00, categoria: "zapatillas", imagenes: ["/productos/zapas/z3.jpg"] },
-  { id: 12, nombre: "Zapa Comfort", precio: 60.00, categoria: "zapatillas", imagenes: ["/productos/zapas/z4.jpg"] },
+  { id: 9, nombre: "Zapa Runner Pro", precio: 89.99, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa1.webp"] },
+  { id: 10, nombre: "Zapa Gym Master", precio: 75.00, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa2.webp"] },
+  { id: 11, nombre: "Zapa Trail", precio: 95.00, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa3.webp"] },
+  { id: 12, nombre: "Zapa Comfort", precio: 60.00, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa4.webp"] },
 ];
 
 const flyToCart = (sourceEl: HTMLElement) => {
