@@ -391,6 +391,67 @@
   color: #888;
 }
 
+.card-tallas {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.talla-badge-admin {
+  background: #f0f8e8;
+  color: #5e9620;
+  border: 1px solid #cce8a0;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.talla-badge-admin.agotada {
+  background: #f8f8f8;
+  color: #bbb;
+  border-color: #e0e0e0;
+}
+
+.tallas-stock-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.talla-stock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.talla-stock-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #1a3a1a;
+  letter-spacing: 0.05em;
+}
+
+.talla-stock-item input {
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 4px;
+  font-size: 1rem;
+  text-align: center;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  background: white;
+  color: #333;
+}
+
+.talla-stock-item input:focus {
+  border-color: #76b82a;
+}
+
 .card-desc {
   font-size: 0.82rem;
   color: #999;

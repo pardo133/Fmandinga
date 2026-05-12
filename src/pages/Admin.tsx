@@ -7,6 +7,8 @@ import {
   updateProduct,
   deleteProduct,
   Product,
+  TALLAS,
+  Talla,
 } from '../service/productService';
 import './Admin.css';
 
@@ -15,11 +17,13 @@ type Categoria = typeof CATEGORIAS[number];
 
 const BACKEND_URL = (import.meta as any).env.VITE_API_URL.replace('/api', '');
 
+const emptyTallas = () => ({ XS: '0', S: '0', M: '0', L: '0' });
+
 const emptyForm = {
   nombre: '',
   precio: '',
   descripcion: '',
-  stock: '0',
+  tallasStock: emptyTallas(),
   categoria: 'Leggings' as Categoria,
 };
 
@@ -69,7 +73,12 @@ const Admin = () => {
       nombre: p.nombre,
       precio: String(p.precio),
       descripcion: p.descripcion ?? '',
-      stock: String(p.stock),
+      tallasStock: {
+        XS: String(p.tallas?.XS ?? 0),
+        S: String(p.tallas?.S ?? 0),
+        M: String(p.tallas?.M ?? 0),
+        L: String(p.tallas?.L ?? 0),
+      },
       categoria: p.categoria,
     });
     setImageFile(null);
@@ -100,8 +109,13 @@ const Admin = () => {
       fd.append('nombre', form.nombre);
       fd.append('precio', form.precio);
       fd.append('descripcion', form.descripcion);
-      fd.append('stock', form.stock);
       fd.append('categoria', form.categoria);
+      fd.append('tallas', JSON.stringify({
+        XS: Number(form.tallasStock.XS),
+        S: Number(form.tallasStock.S),
+        M: Number(form.tallasStock.M),
+        L: Number(form.tallasStock.L),
+      }));
       if (imageFile) fd.append('imagen', imageFile);
 
       if (editingId) {
@@ -129,6 +143,9 @@ const Admin = () => {
   };
 
   const imgUrl = (img?: string) => (img ? `${BACKEND_URL}${img}` : null);
+
+  const stockTotal = (p: Product) =>
+    TALLAS.reduce((sum, t) => sum + (p.tallas?.[t] ?? 0), 0);
 
   if (!user || user.role !== 'admin') return null;
 
@@ -179,17 +196,6 @@ const Admin = () => {
                 </div>
 
                 <div className="form-group">
-                  <label>Stock</label>
-                  <input
-                    type="number"
-                    min="0"
-                    value={form.stock}
-                    onChange={e => setForm(f => ({ ...f, stock: e.target.value }))}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
                   <label>Categoría</label>
                   <select
                     value={form.categoria}
@@ -199,6 +205,26 @@ const Admin = () => {
                       <option key={c} value={c}>{c}</option>
                     ))}
                   </select>
+                </div>
+
+                <div className="form-group form-full">
+                  <label>Stock por talla</label>
+                  <div className="tallas-stock-grid">
+                    {TALLAS.map(t => (
+                      <div key={t} className="talla-stock-item">
+                        <span className="talla-stock-label">{t}</span>
+                        <input
+                          type="number"
+                          min="0"
+                          value={form.tallasStock[t as Talla]}
+                          onChange={e => setForm(f => ({
+                            ...f,
+                            tallasStock: { ...f.tallasStock, [t]: e.target.value },
+                          }))}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="form-group form-full">
@@ -285,7 +311,20 @@ const Admin = () => {
                           <h3>{p.nombre}</h3>
                           <div className="card-meta">
                             <span className="card-price">{p.precio.toFixed(2)} €</span>
-                            <span className="card-stock">Stock: {p.stock}</span>
+                            <span className="card-stock">Stock total: {stockTotal(p)}</span>
+                          </div>
+                          <div className="card-tallas">
+                            {TALLAS.map(t => {
+                              const qty = p.tallas?.[t] ?? 0;
+                              return (
+                                <span
+                                  key={t}
+                                  className={`talla-badge-admin${qty === 0 ? ' agotada' : ''}`}
+                                >
+                                  {t}: {qty}
+                                </span>
+                              );
+                            })}
                           </div>
                           {p.descripcion && (
                             <p className="card-desc">{p.descripcion}</p>

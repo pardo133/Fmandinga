@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Productos.css';
 import { useCart } from '../context/CartContext';
-import { fetchProducts, Product } from '../service/productService';
+import { fetchProducts, Product, TALLAS } from '../service/productService';
 
 const BACKEND_URL = (import.meta as any).env.VITE_API_URL.replace('/api', '');
 const CATEGORIAS = ['Leggings', 'Camisetas', 'Zapatillas'] as const;
@@ -56,6 +56,7 @@ const Productos = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [zoomImg, setZoomImg] = useState<string | null>(null);
+  const [selectedTallas, setSelectedTallas] = useState<Record<string, string>>({});
   const { addItem, toggleCart } = useCart();
 
   useEffect(() => {
@@ -70,21 +71,31 @@ const Productos = () => {
   const imgSrc = (p: Product) =>
     p.imagen ? `${BACKEND_URL}${p.imagen}` : '/placeholder.jpg';
 
+  const handleSelectTalla = (productId: string, talla: string) => {
+    setSelectedTallas(prev => ({ ...prev, [productId]: talla }));
+  };
+
   const handleAddToCart = (
     e: React.MouseEvent<HTMLButtonElement>,
     prod: Product
   ) => {
+    const talla = selectedTallas[prod._id];
+    if (!talla) return;
+
     const card = (e.currentTarget as HTMLElement).closest('.producto-card') as HTMLElement;
     const imgContainer = card?.querySelector('.producto-img-container') as HTMLElement;
     if (imgContainer) flyToCart(imgContainer);
 
     addItem({
-      id: prod._id,
+      id: `${prod._id}|${talla}`,
+      productId: prod._id,
       nombre: prod.nombre,
       precio: prod.precio,
       imagen: imgSrc(prod),
+      talla,
     });
 
+    setSelectedTallas(prev => ({ ...prev, [prod._id]: '' }));
     setTimeout(() => toggleCart(), 750);
   };
 
@@ -131,11 +142,36 @@ const Productos = () => {
                   <p className="producto-descripcion">{prod.descripcion}</p>
                 )}
                 <p className="precio">{prod.precio.toFixed(2)}€</p>
+
+                <div className="talla-selector">
+                  <span className="talla-label">Talla:</span>
+                  <div className="talla-botones">
+                    {TALLAS.map(t => {
+                      const stock = prod.tallas?.[t] ?? 0;
+                      const agotada = stock === 0;
+                      return (
+                        <button
+                          key={t}
+                          className={`btn-talla${selectedTallas[prod._id] === t ? ' selected' : ''}${agotada ? ' agotada' : ''}`}
+                          onClick={() => !agotada && handleSelectTalla(prod._id, t)}
+                          disabled={agotada}
+                          title={agotada ? 'Sin stock' : t}
+                        >
+                          {t}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
                 <button
                   className="btn-carrito"
                   onClick={e => handleAddToCart(e, prod)}
+                  disabled={!selectedTallas[prod._id]}
                 >
-                  AÑADIR AL CARRITO
+                  {selectedTallas[prod._id]
+                    ? `AÑADIR TALLA ${selectedTallas[prod._id]}`
+                    : 'ELIGE UNA TALLA'}
                 </button>
               </div>
             </div>

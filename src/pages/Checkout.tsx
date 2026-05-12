@@ -152,6 +152,7 @@ const Checkout = () => {
                   <img src={item.imagen} alt={item.nombre} className="co-summary-img" />
                   <div className="co-summary-info">
                     <span className="co-summary-name">{item.nombre}</span>
+                    <span className="co-summary-talla">Talla: {item.talla}</span>
                     <span className="co-summary-qty">x {item.cantidad}</span>
                   </div>
                   <span className="co-summary-price">

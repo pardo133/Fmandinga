@@ -34,6 +34,7 @@ const CartDrawer = () => {
                   <img src={item.imagen} alt={item.nombre} className="cart-item-img" />
                   <div className="cart-item-info">
                     <p className="cart-item-name">{item.nombre}</p>
+                    <p className="cart-item-talla">Talla: {item.talla}</p>
                     <p className="cart-item-price">{item.precio.toFixed(2)}€</p>
                     <div className="cart-item-qty">
                       <button onClick={() => updateQuantity(item.id, -1)}>−</button>

@@ -152,6 +152,14 @@
   text-overflow: ellipsis;
 }
 
+.co-summary-talla {
+  font-size: 0.75rem;
+  color: #76b82a;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 .co-summary-qty {
   font-size: 0.78rem;
   color: #999;

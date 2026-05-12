@@ -120,6 +120,15 @@
   text-overflow: ellipsis;
 }
 
+.cart-item-talla {
+  font-size: 0.75rem;
+  color: #76b82a;
+  font-weight: 700;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .cart-item-price {
   font-size: 0.95rem;
   color: #76b82a;

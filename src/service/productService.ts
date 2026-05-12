@@ -2,12 +2,16 @@ import axios from 'axios';
 
 const API_URL = (import.meta as any).env.VITE_API_URL;
 
+export type Talla = 'XS' | 'S' | 'M' | 'L';
+export type TallasStock = Record<Talla, number>;
+export const TALLAS: Talla[] = ['XS', 'S', 'M', 'L'];
+
 export interface Product {
   _id: string;
   nombre: string;
   precio: number;
   descripcion?: string;
-  stock: number;
+  tallas: TallasStock;
   categoria: 'Leggings' | 'Camisetas' | 'Zapatillas';
   imagen?: string;
 }

@@ -1,18 +1,20 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface CartItem {
-  id: string | number;
+  id: string;           // composite: `${productId}|${talla}`
+  productId: string;
   nombre: string;
   precio: number;
   imagen: string;
   cantidad: number;
+  talla: string;
 }
 
 interface CartContextType {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'cantidad'>) => void;
-  removeItem: (id: string | number) => void;
-  updateQuantity: (id: string | number, delta: number) => void;
+  removeItem: (id: string) => void;
+  updateQuantity: (id: string, delta: number) => void;
   total: number;
   totalItems: number;
   isOpen: boolean;
@@ -36,11 +38,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const removeItem = (id: string | number) => {
+  const removeItem = (id: string) => {
     setItems(prev => prev.filter(i => i.id !== id));
   };
 
-  const updateQuantity = (id: string | number, delta: number) => {
+  const updateQuantity = (id: string, delta: number) => {
     setItems(prev =>
       prev
         .map(i => i.id === id ? { ...i, cantidad: i.cantidad + delta } : i)
