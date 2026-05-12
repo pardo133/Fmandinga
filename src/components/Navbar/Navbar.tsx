@@ -41,6 +41,13 @@ const Navbar = () => {
 
           {user ? (
             <>
+              {user.role === 'admin' && (
+                <li>
+                  <NavLink to="/admin" className="nav-links admin-link" onClick={closeMenu}>
+                    Admin
+                  </NavLink>
+                </li>
+              )}
               <li>
                 <NavLink to="/perfil" className="profile-btn" onClick={closeMenu}>
                   <div className="avatar-circle">

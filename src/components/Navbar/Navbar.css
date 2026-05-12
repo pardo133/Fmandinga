@@ -101,6 +101,23 @@
   cursor: pointer;
 }
 
+.admin-link {
+  background-color: #76b82a !important;
+  color: white !important;
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-shadow: none !important;
+  transition: background-color 0.2s;
+}
+
+.admin-link:hover {
+  background-color: #5d9620 !important;
+  color: white !important;
+}
+
 .menu-icon {
   display: none; 
   flex-direction: column;

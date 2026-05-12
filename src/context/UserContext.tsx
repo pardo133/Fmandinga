@@ -6,7 +6,7 @@ export interface UserProfile {
   nombre: string;
   apellido: string;
   correo: string;
-  role?: string;
+  role?: 'user' | 'admin';
   address?: string;
   city?: string;
   postalCode?: string;
