@@ -7,15 +7,29 @@ const API_URL = (import.meta as any).env.VITE_API_URL;
 export const SESSION_MINUTES = 120;
 
 const cookieOptions = (): Cookies.CookieAttributes => ({
-  // Date absoluta: ahora + SESSION_MINUTES
   expires: new Date(Date.now() + SESSION_MINUTES * 60 * 1000),
-  secure: false,       // false para localhost (HTTP); true en producción (HTTPS)
+  secure: window.location.protocol === 'https:',
   sameSite: 'strict',
 });
 
+const TOKEN_KEY = 'authToken';
+
+const saveToken = (token: string) => {
+  Cookies.set('token', token, cookieOptions());
+  localStorage.setItem(TOKEN_KEY, token);
+};
+
+const getToken = (): string | undefined =>
+  Cookies.get('token') ?? localStorage.getItem(TOKEN_KEY) ?? undefined;
+
+const clearToken = () => {
+  Cookies.remove('token');
+  localStorage.removeItem(TOKEN_KEY);
+};
+
 // ── Interceptor de REQUEST — añade el token a todas las peticiones ────────────
 axios.interceptors.request.use((config) => {
-  const token = Cookies.get('token');
+  const token = getToken();
   if (token) {
     config.headers.set('Authorization', `Bearer ${token}`);
   }
@@ -27,8 +41,7 @@ axios.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expirado o inválido → limpiar sesión y redirigir
-      Cookies.remove('token');
+      clearToken();
       localStorage.removeItem('user');
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
@@ -45,7 +58,7 @@ export const loginUser = async (credentials: { correo: string; password: string 
   const { token } = response.data;
 
   if (token) {
-    Cookies.set('token', token, cookieOptions());
+    saveToken(token);
   }
 
   return response.data;
@@ -61,7 +74,7 @@ export const refreshToken = async (): Promise<boolean> => {
     const response = await axios.get(`${API_URL}/users/refresh`);
     const { token } = response.data;
     if (token) {
-      Cookies.set('token', token, cookieOptions());
+      saveToken(token);
       return true;
     }
     return false;
@@ -71,7 +84,7 @@ export const refreshToken = async (): Promise<boolean> => {
 };
 
 export const logout = () => {
-  Cookies.remove('token');
+  clearToken();
   localStorage.removeItem('user');
   window.location.href = '/login';
 };
