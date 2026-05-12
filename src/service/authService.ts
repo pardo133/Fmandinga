@@ -76,6 +76,11 @@ export const logout = () => {
   window.location.href = '/login';
 };
 
+export const forgotPassword = async (correo: string) => {
+  const response = await axios.post(`${API_URL}/users/forgot-password`, { correo });
+  return response.data;
+};
+
 export const registerUser = async (userData: {
   nombre: string;
   apellido: string;

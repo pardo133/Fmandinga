@@ -35,8 +35,9 @@ export default Login;
 NOTA: este codigo de arriba se conserva porque ha habido que sustituirlo por el codigo que viene debajo. Se sustituye para hacer upgrade al codigo para cookies, pero este codigo (basico) de aqui encima FUNCIONA. Se conserva como codigo de rescate por prevencion de una posible urgencia (sin cookies)*/
 
 import { useForm } from 'react-hook-form';
-import { loginUser } from '../service/authService';
+import { loginUser, forgotPassword } from '../service/authService';
 import { swalOk, swalError } from '../lib/swal';
+import Swal from 'sweetalert2';
 import './Login.css';
 
 const Login = () => {
@@ -61,6 +62,25 @@ const Login = () => {
     }
   };
 
+  const handleForgotPassword = async () => {
+    const { value: correo } = await Swal.fire({
+      title: 'Recuperar contraseña',
+      input: 'email',
+      inputLabel: 'Introduce tu correo electrónico',
+      inputPlaceholder: 'email@ejemplo.com',
+      confirmButtonText: 'Enviar',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+    });
+    if (!correo) return;
+    try {
+      await forgotPassword(correo);
+      swalOk('Correo enviado', 'Revisa tu bandeja de entrada');
+    } catch {
+      swalError('Error', 'No se pudo enviar el correo de recuperación');
+    }
+  };
+
   return (
     <div className="login-container">
       <div className="login-box">
@@ -68,25 +88,27 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-group">
             <label>Correo electrónico</label>
-           
-            <input 
-              {...register('correo')} 
-              type="email" 
-              placeholder="email@ejemplo.com" 
-              required 
+            <input
+              {...register('correo')}
+              type="email"
+              placeholder="email@ejemplo.com"
+              required
             />
           </div>
           <div className="input-group">
             <label>Contraseña</label>
-            <input 
-              {...register('password')} 
-              type="password" 
-              placeholder="••••••••" 
-              required 
+            <input
+              {...register('password')}
+              type="password"
+              placeholder="••••••••"
+              required
             />
           </div>
           <button type="submit" className="btn-login">Entrar</button>
         </form>
+        <button type="button" className="btn-forgot" onClick={handleForgotPassword}>
+          ¿Olvidaste tu contraseña?
+        </button>
       </div>
     </div>
   );

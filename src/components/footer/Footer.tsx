@@ -45,7 +45,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} La Mandinga | Todos los derechos reservados.</p>
+        <p>&copy; {new Date().getFullYear()} La Mandinga | Todos los derechos reservados. | <a href="/aviso-legal" style={{ color: '#76b82a', textDecoration: 'none' }}>Aviso Legal</a></p>
       </div>
     </footer>
   );

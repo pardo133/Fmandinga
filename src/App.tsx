@@ -16,6 +16,7 @@ import Success from './pages/Success';
 import Checkout from './pages/Checkout';
 import Perfil from './pages/Perfil';
 import Admin from './pages/Admin';
+import AvisoLegal from './pages/AvisoLegal';
 import CookieBanner from './components/CookieBanner/CookieBanner';
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/success" element={<Success />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/aviso-legal" element={<AvisoLegal />} />
           </Routes>
           </main>
 
