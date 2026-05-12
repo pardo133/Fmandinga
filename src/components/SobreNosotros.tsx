@@ -13,7 +13,7 @@ const SobreNosotros = () => {
       <section style={{ margin: '60px auto', padding: '40px', background: '#f9fbf9', borderRadius: '20px', maxWidth: '800px', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
         <h2 style={{ color: '#1a3a1a', marginBottom: '20px' }}>Nuestra Historia</h2>
         <p style={{ lineHeight: '1.8', color: '#444', fontSize: '1.1rem' }}>
-          Nacimos en 2026 para demostrar que la moda deportiva de alto rendimiento puede ser ética. 
+          Nacimos en 2019 para demostrar que la moda deportiva de alto rendimiento puede ser ética. 
           En <strong>La Mandinga</strong>, transformamos residuos plásticos recuperados de nuestros océanos 
           en prendas técnicas diseñadas para durar. No solo vestimos guerreros, protegemos su campo de batalla.
         </p>
