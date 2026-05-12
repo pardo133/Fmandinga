@@ -5,15 +5,42 @@
   color: #1a3a1a;
 }
 
-.sobre-header {
-  text-align: center;
+.sobre-hero {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: 500px;
+  background-image: url('https://m.media-amazon.com/images/I/81htNdWYxwL.jpg');
+  background-size: cover;
+  background-position: center top;
+  position: relative;
   margin-bottom: 80px;
 }
 
-.sobre-header h1 {
+.sobre-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.sobre-hero-overlay h1 {
   font-size: 4rem;
   letter-spacing: 5px;
   text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+.sobre-hero-overlay p {
+  font-size: 1.4rem;
+  color: #c8f07a;
+  font-style: italic;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .sobre-texto {
