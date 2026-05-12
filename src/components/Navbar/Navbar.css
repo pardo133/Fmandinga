@@ -186,3 +186,17 @@
   from { transform: scale(0); }
   to   { transform: scale(1); }
 }
+.nav-admin {
+  color: #76b82a !important;
+  font-weight: 700 !important;
+  border: 1px solid #76b82a;
+  border-radius: 20px;
+  padding: 4px 14px !important;
+  transition: background 0.2s !important;
+}
+
+.nav-admin:hover,
+.nav-admin.active {
+  background: #76b82a !important;
+  color: white !important;
+}

@@ -6,6 +6,7 @@ export interface UserProfile {
   nombre: string;
   apellido: string;
   correo: string;
+  role?: string;
   address?: string;
   city?: string;
   postalCode?: string;

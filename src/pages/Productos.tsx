@@ -1,26 +1,10 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Productos.css';
 import { useCart } from '../context/CartContext';
+import { fetchProducts, Product } from '../service/productService';
 
-const productosData = [
-  // LEGINS
-  { id: 1, nombre: "Leggin Guepardo", precio: 29.99, categoria: "legins", imagenes: ["/productos/legins/guepardo.JPG", "/productos/legins/guepardo2.JPG", "/productos/legins/guepardo3.JPG", "/productos/legins/guepardo4.JPG"] },
-  { id: 2, nombre: "Leggin Militar", precio: 34.99, categoria: "legins", imagenes: ["/productos/legins/militar.JPG", "/productos/legins/militar1.JPG", "/productos/legins/militar2.JPG", "/productos/legins/militar3.JPG"] },
-  { id: 3, nombre: "Leggin Leon", precio: 32.00, categoria: "legins", imagenes: ["/productos/legins/leon.JPG", "/productos/legins/leon1.JPG", "/productos/legins/leon2.JPG", "/productos/legins/leon3.JPG"] },
-  { id: 4, nombre: "Leggin Black", precio: 25.00, categoria: "legins", imagenes: ["/productos/legins/black.JPG", "/productos/legins/black1.JPG", "/productos/legins/black2.JPG", "/productos/legins/black3.JPG"] },
-
-  // CAMISETAS
-  { id: 5, nombre: "Camiseta Dry-Fit", precio: 19.99, categoria: "camisetas", imagenes: ["/productos/camisetas/cami1.webp"] },
-  { id: 6, nombre: "Top Crop Mandinga", precio: 15.99, categoria: "camisetas", imagenes: ["/productos/camisetas/cami2.JPG"] },
-  { id: 7, nombre: "Camiseta Tirantes", precio: 18.00, categoria: "camisetas", imagenes: ["/productos/camisetas/cami3.webp"] },
-  { id: 8, nombre: "Sudadera Eco", precio: 39.99, categoria: "camisetas", imagenes: ["/productos/camisetas/cami4.webp"] },
-
-  // ZAPATILLAS
-  { id: 9, nombre: "Zapa Runner Pro", precio: 89.99, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa1.webp"] },
-  { id: 10, nombre: "Zapa Gym Master", precio: 75.00, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa2.webp"] },
-  { id: 11, nombre: "Zapa Trail", precio: 95.00, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa3.webp"] },
-  { id: 12, nombre: "Zapa Comfort", precio: 60.00, categoria: "zapatillas", imagenes: ["/productos/zapatillas/zapa4.webp"] },
-];
+const BACKEND_URL = (import.meta as any).env.VITE_API_URL.replace('/api', '');
+const CATEGORIAS = ['Leggings', 'Camisetas', 'Zapatillas'] as const;
 
 const flyToCart = (sourceEl: HTMLElement) => {
   const cartBtn = document.getElementById('cart-icon-btn');
@@ -28,7 +12,6 @@ const flyToCart = (sourceEl: HTMLElement) => {
 
   const srcRect = sourceEl.getBoundingClientRect();
   const dstRect = cartBtn.getBoundingClientRect();
-
   const img = sourceEl.querySelector('img') as HTMLImageElement | null;
 
   const flyEl = document.createElement('div');
@@ -69,22 +52,38 @@ const flyToCart = (sourceEl: HTMLElement) => {
 };
 
 const Productos = () => {
-  const [categoriaActual, setCategoriaActual] = useState('legins');
-  const [fotosModal, setFotosModal] = useState<string[] | null>(null);
-  const [fotoGigante, setFotoGigante] = useState<string | null>(null);
+  const [categoriaActual, setCategoriaActual] = useState<typeof CATEGORIAS[number]>('Leggings');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [zoomImg, setZoomImg] = useState<string | null>(null);
   const { addItem, toggleCart } = useCart();
 
-  const productosFiltrados = productosData.filter(p => p.categoria === categoriaActual);
+  useEffect(() => {
+    fetchProducts()
+      .then(data => setProducts(data))
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const productosFiltrados = products.filter(p => p.categoria === categoriaActual);
+
+  const imgSrc = (p: Product) =>
+    p.imagen ? `${BACKEND_URL}${p.imagen}` : '/placeholder.jpg';
 
   const handleAddToCart = (
     e: React.MouseEvent<HTMLButtonElement>,
-    prod: typeof productosData[0]
+    prod: Product
   ) => {
     const card = (e.currentTarget as HTMLElement).closest('.producto-card') as HTMLElement;
     const imgContainer = card?.querySelector('.producto-img-container') as HTMLElement;
     if (imgContainer) flyToCart(imgContainer);
 
-    addItem({ id: prod.id, nombre: prod.nombre, precio: prod.precio, imagen: prod.imagenes[0] });
+    addItem({
+      id: prod._id,
+      nombre: prod.nombre,
+      precio: prod.precio,
+      imagen: imgSrc(prod),
+    });
 
     setTimeout(() => toggleCart(), 750);
   };
@@ -94,67 +93,90 @@ const Productos = () => {
       <h1 className="main-title"> La Mandinga</h1>
 
       <div className="filtros-categorias">
-        <button className={categoriaActual === 'legins' ? 'active' : ''} onClick={() => setCategoriaActual('legins')}>LEGINS</button>
-        <button className={categoriaActual === 'camisetas' ? 'active' : ''} onClick={() => setCategoriaActual('camisetas')}>CAMISETAS</button>
-        <button className={categoriaActual === 'zapatillas' ? 'active' : ''} onClick={() => setCategoriaActual('zapatillas')}>ZAPATILLAS</button>
-      </div>
-
-      <div className="productos-grid">
-        {productosFiltrados.map((prod) => (
-          <div key={prod.id} className="producto-card">
-            <div className="producto-img-container">
-              <img src={prod.imagenes[0]} alt={prod.nombre} />
-              <button className="btn-ver-fotos" onClick={() => setFotosModal(prod.imagenes)}>
-                Ver fotos
-              </button>
-            </div>
-            <div className="producto-detalles">
-              <h3>{prod.nombre}</h3>
-              <p className="precio">{prod.precio.toFixed(2)}€</p>
-              <button className="btn-carrito" onClick={(e) => handleAddToCart(e, prod)}>
-                AÑADIR AL CARRITO
-              </button>
-            </div>
-          </div>
+        {CATEGORIAS.map(cat => (
+          <button
+            key={cat}
+            className={categoriaActual === cat ? 'active' : ''}
+            onClick={() => setCategoriaActual(cat)}
+          >
+            {cat.toUpperCase()}
+          </button>
         ))}
       </div>
 
-      {fotosModal && (
-        <div className="modal-overlay" onClick={() => setFotosModal(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setFotosModal(null)}>×</button>
-            <div className="modal-gallery">
-              {fotosModal.map((url, index) => (
-                <img
-                  key={index}
-                  src={url}
-                  alt="detalle"
-                  className="modal-img-thumb"
-                  style={{ cursor: 'zoom-in' }}
-                  onClick={() => setFotoGigante(url)}
-                />
-              ))}
+      {loading ? (
+        <p style={{ textAlign: 'center', color: '#888', padding: '60px 0' }}>
+          Cargando productos...
+        </p>
+      ) : productosFiltrados.length === 0 ? (
+        <p style={{ textAlign: 'center', color: '#aaa', padding: '60px 0' }}>
+          No hay productos en esta categoría todavía.
+        </p>
+      ) : (
+        <div className="productos-grid">
+          {productosFiltrados.map(prod => (
+            <div key={prod._id} className="producto-card">
+              <div className="producto-img-container">
+                <img src={imgSrc(prod)} alt={prod.nombre} />
+                <button
+                  className="btn-ver-fotos"
+                  onClick={() => setZoomImg(imgSrc(prod))}
+                >
+                  Ver foto
+                </button>
+              </div>
+              <div className="producto-detalles">
+                <h3>{prod.nombre}</h3>
+                {prod.descripcion && (
+                  <p className="producto-descripcion">{prod.descripcion}</p>
+                )}
+                <p className="precio">{prod.precio.toFixed(2)}€</p>
+                <button
+                  className="btn-carrito"
+                  onClick={e => handleAddToCart(e, prod)}
+                >
+                  AÑADIR AL CARRITO
+                </button>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       )}
 
-      {fotoGigante && (
+      {zoomImg && (
         <div
           className="modal-overlay"
           style={{ zIndex: 100000, background: 'rgba(0,0,0,0.95)', cursor: 'zoom-out' }}
-          onClick={() => setFotoGigante(null)}
+          onClick={() => setZoomImg(null)}
         >
           <div
             className="modal-content"
-            style={{ background: 'transparent', border: 'none', boxShadow: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              boxShadow: 'none',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onClick={e => e.stopPropagation()}
           >
-            <button className="modal-close" style={{ color: 'white', fontSize: '30px', top: '10px', right: '10px' }} onClick={() => setFotoGigante(null)}>×</button>
+            <button
+              className="modal-close"
+              style={{ color: 'white', fontSize: '30px', top: '10px', right: '10px' }}
+              onClick={() => setZoomImg(null)}
+            >
+              ×
+            </button>
             <img
-              src={fotoGigante}
+              src={zoomImg}
               alt="Zoom"
-              style={{ maxWidth: '90vw', maxHeight: '90vh', borderRadius: '8px', boxShadow: '0 0 50px rgba(255,255,255,0.1)' }}
+              style={{
+                maxWidth: '90vw',
+                maxHeight: '90vh',
+                borderRadius: '8px',
+                boxShadow: '0 0 50px rgba(255,255,255,0.1)',
+              }}
             />
           </div>
         </div>
