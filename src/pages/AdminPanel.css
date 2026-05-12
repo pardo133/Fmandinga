@@ -1,0 +1,268 @@
+.admin-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem 3rem;
+  font-family: inherit;
+}
+
+.admin-loading {
+  text-align: center;
+  padding: 4rem;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.admin-header {
+  margin-bottom: 2rem;
+}
+
+.admin-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.25rem;
+}
+
+.admin-subtitle {
+  color: #666;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.admin-toolbar {
+  margin-bottom: 1.5rem;
+}
+
+.admin-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.admin-section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.admin-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.admin-full {
+  grid-column: 1 / -1;
+}
+
+.admin-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+}
+
+.admin-input {
+  padding: 0.6rem 0.85rem;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1a1a1a;
+  background: #fafafa;
+  transition: border-color 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #76b82a;
+  background: #fff;
+}
+
+.admin-textarea {
+  resize: vertical;
+  min-height: 70px;
+  font-family: inherit;
+}
+
+.admin-form-footer {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Product list */
+.admin-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.admin-product-row {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 1rem 0;
+}
+
+.admin-product-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.admin-product-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin-product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.admin-product-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.admin-product-price {
+  font-size: 0.95rem;
+  color: #76b82a;
+  font-weight: 600;
+}
+
+.admin-product-stock {
+  font-size: 0.82rem;
+  color: #888;
+}
+
+.admin-product-desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.15rem;
+  line-height: 1.4;
+}
+
+.admin-row-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+.admin-edit-block {
+  width: 100%;
+  background: #f9fdf4;
+  border-radius: 10px;
+  padding: 1rem;
+  border: 1.5px solid #c8e89a;
+}
+
+.admin-empty {
+  color: #aaa;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* Buttons */
+.admin-btn-primary {
+  background: #76b82a;
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn-primary:hover {
+  background: #5d9620;
+}
+
+.admin-btn-edit {
+  background: #f0f4ff;
+  color: #3a6fd8;
+  border: 1.5px solid #c5d4f8;
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn-edit:hover {
+  background: #dce8ff;
+}
+
+.admin-btn-delete {
+  background: #fff0f0;
+  color: #e74c3c;
+  border: 1.5px solid #f5c6c6;
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn-delete:hover {
+  background: #ffe0e0;
+}
+
+.admin-btn-ghost {
+  background: transparent;
+  color: #666;
+  border: 1.5px solid #ddd;
+  padding: 0.45rem 1rem;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-btn-ghost:hover {
+  background: #f5f5f5;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .admin-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-full {
+    grid-column: 1;
+  }
+
+  .admin-product-info {
+    flex-direction: column;
+  }
+
+  .admin-row-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
