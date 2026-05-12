@@ -147,8 +147,9 @@ const Productos = () => {
                   <span className="talla-label">Talla:</span>
                   <div className="talla-botones">
                     {TALLAS.map(t => {
-                      const stock = prod.tallas?.[t] ?? 0;
-                      const agotada = stock === 0;
+                      const agotada = prod.tallas
+                        ? (prod.tallas[t] ?? 0) === 0
+                        : !(prod.tallasDisponibles ?? []).includes(t);
                       return (
                         <button
                           key={t}
