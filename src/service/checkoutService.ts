@@ -10,6 +10,7 @@ export interface CheckoutItem {
   nombre: string;
   precio: number;
   cantidad: number;
+  talla: string;
 }
 
 export interface CheckoutRequest {
@@ -35,11 +36,12 @@ export const createCheckoutSession = async (
   items: CartItem[]
 ): Promise<CheckoutResponse> => {
   const payload: CheckoutRequest = {
-    items: items.map(({ id, nombre, precio, cantidad }) => ({
-      id,
+    items: items.map(({ productId, nombre, precio, cantidad, talla }) => ({
+      id: productId,
       nombre,
       precio,
       cantidad,
+      talla,
     })),
   };
   try {
