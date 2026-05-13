@@ -70,6 +70,43 @@ src/
 └── lib/               # Utilidades (SweetAlert config)
 ```
 
+## Autenticación y sesión
+
+### Almacenamiento del token
+El JWT se guarda en dos sitios: cookie `token` (primera opción) y `localStorage` como fallback. `SESSION_MINUTES = 120` **debe coincidir con el `expiresIn` configurado en el backend**.
+
+### Interceptores Axios
+- **Request**: añade `Authorization: Bearer <token>` a todas las peticiones salientes.
+- **Response**: ante un `401`, borra el token, elimina el usuario de `localStorage` y redirige a `/login`.
+
+### Gestión de inactividad y refresco
+- El token se renueva automáticamente cada **90 segundos** mientras el usuario esté activo.
+- La actividad se detecta escuchando los eventos: `click`, `keydown`, `mousemove`, `scroll`, `touchstart`.
+- Si el usuario lleva **120 minutos** sin interactuar, la sesión se cierra automáticamente.
+- Si el backend rechaza la renovación (token expirado en servidor), la sesión también se cierra.
+
+### Historial de implementación
+La implementación original del login usaba axios directo sin cookies (`react-hook-form` + llamada a la API + `alert`). Fue reemplazada para añadir autenticación basada en cookies HTTP con refresh automático, conservando `localStorage` como fallback de compatibilidad.
+
+## Modelo de datos
+
+### CartItem — clave compuesta
+El campo `id` del carrito sigue el formato `` `${productId}|${talla}` `` para distinguir el mismo producto en distintas tallas dentro del mismo carrito.
+
+### Product — campos por rol
+| Campo | Presente en | Tipo | Descripción |
+|-------|-------------|------|-------------|
+| `tallas` | Solo admins | `Record<'XS'\|'S'\|'M'\|'L', number>` | Stock por talla |
+| `tallasDisponibles` | Solo usuarios normales | `Talla[]` | Tallas con stock disponible |
+
+### Checkout — tipos
+| Tipo | Descripción |
+|------|-------------|
+| `CheckoutRequest` | Payload enviado al backend con los items del carrito |
+| `CheckoutResponse` | URL de la sesión de Stripe devuelta por el backend |
+| `SessionStatus` | Estado del pago: `paid`, `unpaid`, `no_payment_required` |
+| `SessionStatusResponse` | Respuesta completa del estado de sesión (email, importe, divisa) |
+
 ## Despliegue
 
 El proyecto está desplegado en **Vercel**.

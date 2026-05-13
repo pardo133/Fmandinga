@@ -3,8 +3,6 @@ import { CartItem } from '../context/CartContext';
 
 const API_URL = (import.meta as any).env.VITE_API_URL;
 
-// ── Types ──────────────────────────────────────────────────────────────────
-
 export interface CheckoutItem {
   id: string;
   nombre: string;
@@ -30,8 +28,6 @@ export interface SessionStatusResponse {
   currency?: string;
 }
 
-// ── API calls ──────────────────────────────────────────────────────────────
-
 export const createCheckoutSession = async (
   items: CartItem[]
 ): Promise<CheckoutResponse> => {
@@ -51,7 +47,6 @@ export const createCheckoutSession = async (
     );
     return response.data;
   } catch (err: any) {
-    // Extraemos el mensaje real del servidor para poder diagnosticar
     const serverMsg =
       err?.response?.data?.message ||
       err?.response?.data ||

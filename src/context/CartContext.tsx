@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 export interface CartItem {
-  id: string;           // composite: `${productId}|${talla}`
+  id: string;
   productId: string;
   nombre: string;
   precio: number;

@@ -11,8 +11,8 @@ export interface Product {
   nombre: string;
   precio: number;
   descripcion?: string;
-  tallas?: TallasStock;           // solo presente para admins
-  tallasDisponibles?: Talla[];    // solo presente para usuarios normales
+  tallas?: TallasStock;
+  tallasDisponibles?: Talla[];
   categoria: 'Leggings' | 'Camisetas' | 'Tops';
   imagen?: string;
 }

@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 
 const API_URL = (import.meta as any).env.VITE_API_URL;
 
-// Duración de la sesión en minutos — debe coincidir con expiresIn del JWT en el backend
 export const SESSION_MINUTES = 120;
 
 const cookieOptions = (): Cookies.CookieAttributes => ({
@@ -27,7 +26,6 @@ const clearToken = () => {
   localStorage.removeItem(TOKEN_KEY);
 };
 
-// ── Interceptor de REQUEST — añade el token a todas las peticiones ────────────
 axios.interceptors.request.use((config) => {
   const token = getToken();
   if (token) {
@@ -36,7 +34,6 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-// ── Interceptor de RESPONSE — logout automático si el token expiró ────────────
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -51,8 +48,6 @@ axios.interceptors.response.use(
   }
 );
 
-// ── Auth functions ────────────────────────────────────────────────────────────
-
 export const loginUser = async (credentials: { correo: string; password: string }) => {
   const response = await axios.post(`${API_URL}/users/login`, credentials);
   const { token } = response.data;
@@ -64,11 +59,6 @@ export const loginUser = async (credentials: { correo: string; password: string 
   return response.data;
 };
 
-/**
- * Pide al backend un nuevo JWT de 2 minutos.
- * Llama a esto periódicamente mientras el usuario esté activo.
- * Devuelve true si la renovación fue exitosa, false si el token ya expiró.
- */
 export const refreshToken = async (): Promise<boolean> => {
   try {
     const response = await axios.get(`${API_URL}/users/refresh`);

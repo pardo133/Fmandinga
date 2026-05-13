@@ -48,7 +48,6 @@ const Perfil = () => {
 
   return (
     <div className="perfil-page">
-      {/* Avatar + name */}
       <div className="perfil-hero">
         <div className="perfil-avatar">{initials}</div>
         <div className="perfil-hero-info">
@@ -59,7 +58,6 @@ const Perfil = () => {
         </div>
       </div>
 
-      {/* Form */}
       <form className="perfil-card" onSubmit={handleSubmit}>
         <h2 className="perfil-section-title">Datos personales</h2>
 
