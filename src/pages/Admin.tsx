@@ -47,7 +47,7 @@ const Admin = () => {
       return;
     }
     loadProducts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [user]);
 
   const loadProducts = async () => {

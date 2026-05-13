@@ -67,7 +67,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     const interval = setInterval(doRefresh, REFRESH_INTERVAL_MS);
     return () => clearInterval(interval);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [user?.correo]);
 
   const handleLogout = () => {
