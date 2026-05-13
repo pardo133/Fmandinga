@@ -1,63 +1,78 @@
-# Fmandinga — Front La Mandinga
-# React + TypeScript + Vite
+# La Mandinga — Frontend
 
-Front tienda ropa deporte. React + Vite + TS. Deploy Vercel.
+Tienda online de ropa deportiva. Desarrollado con React + Vite + TypeScript y desplegado en Vercel.
 
-## Stack
+## Tecnologías
 
-- React 19 · TS · Vite 8
-- React Router v7 (rutas)
-- Axios (fetch API)
-- SweetAlert2 (popups)
-- React Hook Form (forms)
-- js-cookie (cookies auth)
+- **React 19** + **TypeScript** + **Vite 8**
+- **React Router v7** — navegación entre páginas
+- **Axios** — peticiones a la API
+- **React Hook Form** — gestión de formularios
+- **SweetAlert2** — alertas y confirmaciones
+- **js-cookie** — manejo de cookies de autenticación
 
-## Arrancar
+## Requisitos previos
+
+- Node.js 18+
+- Backend corriendo (ver repositorio del backend)
+
+## Instalación
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Build
+## Variables de entorno
 
-```bash
-npm run build
-```
+Crea un archivo `.env` en la raíz del proyecto:
 
-## Variables entorno
-
-Crear `.env` en raíz:
-
-```
+```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
+## Scripts disponibles
+
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Build de producción |
+| `npm run preview` | Vista previa del build |
+| `npm run lint` | Linter ESLint |
+
 ## Páginas
 
-| Ruta | Qué hace |
-|------|----------|
-| `/` | Home (Hero + SobreNosotros) |
-| `/productos` | Catálogo con filtro categoría |
-| `/checkout` | Pago pedido |
-| `/login` | Login |
-| `/register` | Registro |
-| `/perfil` | Datos usuario |
-| `/admin` | Panel admin |
-| `/success` | Confirmación compra |
-| `/aviso-legal` | Legal |
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Home — Hero y sección "Sobre nosotros" |
+| `/productos` | Catálogo con filtro por categoría y carrito |
+| `/checkout` | Proceso de pago |
+| `/login` | Inicio de sesión |
+| `/register` | Registro de usuario |
+| `/perfil` | Perfil y datos del usuario |
+| `/admin` | Panel de administración |
+| `/success` | Confirmación de compra |
+| `/aviso-legal` | Aviso legal |
 
-## Estructura
+## Estructura del proyecto
 
 ```
 src/
-├── components/   # Navbar, Cart, Hero, Footer...
-├── pages/        # Una carpeta por página
-├── context/      # CartContext
-└── service/      # authService, productService
+├── components/        # Componentes reutilizables
+│   ├── Navbar/        # Barra de navegación
+│   ├── Cart/          # Carrito (FAB + Drawer)
+│   ├── footer/        # Pie de página
+│   ├── Hero           # Banner principal
+│   └── SobreNosotros  # Sección informativa
+├── pages/             # Páginas de la aplicación
+├── context/           # CartContext (estado global del carrito)
+├── service/           # Servicios (auth, productos)
+└── lib/               # Utilidades (SweetAlert config)
 ```
 
-## Deploy
+## Despliegue
 
-Vercel. Push main = redeploy auto.
-URL prod: https://lamandinga.tripleeme.es
+El proyecto está desplegado en **Vercel**.
+
+- **URL de producción**: https://lamandinga.tripleeme.es
+- Cualquier push a `main` genera un redeploy automático.
