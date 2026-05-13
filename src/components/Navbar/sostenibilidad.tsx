@@ -22,10 +22,10 @@ const Sostenibilidad = () => {
   <iframe 
     width="100%" 
     height="400" 
-    src="https://www.youtube.com/embed/2_ntVE1pqes" 
-    title="La Mandinga - Sostenibilidad" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    src="https://drive.google.com/file/d/1gu0xsVX-CUaxckS0dlt5H9_rgqEj1QGa/preview"
+    title="La Mandinga - Sostenibilidad"
+    frameBorder="0"
+    allow="autoplay"
     allowFullScreen
     style={{ 
       borderRadius: '20px', 
