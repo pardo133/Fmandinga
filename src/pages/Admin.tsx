@@ -12,7 +12,7 @@ import {
 } from '../service/productService';
 import './Admin.css';
 
-const CATEGORIAS = ['Leggings', 'Camisetas', 'Zapatillas'] as const;
+const CATEGORIAS = ['Leggings', 'Camisetas', 'Tops'] as const;
 type Categoria = typeof CATEGORIAS[number];
 
 const BACKEND_URL = (import.meta as any).env.VITE_API_URL.replace('/api', '');

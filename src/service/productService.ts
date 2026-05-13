@@ -13,7 +13,7 @@ export interface Product {
   descripcion?: string;
   tallas?: TallasStock;           // solo presente para admins
   tallasDisponibles?: Talla[];    // solo presente para usuarios normales
-  categoria: 'Leggings' | 'Camisetas' | 'Zapatillas';
+  categoria: 'Leggings' | 'Camisetas' | 'Tops';
   imagen?: string;
 }
 
