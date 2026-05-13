@@ -19,19 +19,16 @@ const Sostenibilidad = () => {
           </ul>
         </div>
        <div className="sostenibilidad-video-container">
-  <iframe 
-    width="100%" 
-    height="400" 
+  <div className="video-overlay-top" />
+  <iframe
+    width="100%"
+    height="448"
     src="https://drive.google.com/file/d/1gu0xsVX-CUaxckS0dlt5H9_rgqEj1QGa/preview"
     title="La Mandinga - Sostenibilidad"
     frameBorder="0"
     allow="autoplay"
     allowFullScreen
-    style={{ 
-      borderRadius: '20px', 
-      boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
-      border: 'none'
-    }}
+    style={{ border: 'none', display: 'block', marginTop: '-48px' }}
   ></iframe>
 </div>
 

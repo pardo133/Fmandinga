@@ -62,8 +62,18 @@
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-  background-color: #000; 
+  background-color: #000;
   transition: transform 0.3s ease;
+}
+
+.video-overlay-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: #000;
+  z-index: 10;
 }
 
 .sostenibilidad-video-container:hover {
