@@ -18,7 +18,7 @@ const Footer = () => {
           
           <div className="social-links">
             <a href="#" aria-label="Facebook"><FaFacebook /></a>
-            <a href="#" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.instagram.com/lamandinga/?hl=es" aria-label="Instagram"><FaInstagram /></a>
             <a href="#" aria-label="Twitter"><FaTwitter /></a>
             <a href="#" aria-label="Linkedin"><FaLinkedin /></a>
           </div>
