@@ -5,6 +5,8 @@
   padding: 40px 20px;
   text-align: center;
   background-color: #ffffff;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 
@@ -259,4 +261,103 @@
   height: 250px;
   object-fit: cover;
   border-radius: 5px;
+}
+
+/* ── Responsive ────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .productos-page {
+    padding: 24px 16px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .filtros-categorias {
+    gap: 8px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .filtros-categorias button {
+    padding: 10px 18px;
+    font-size: 12px;
+  }
+
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 4px 0;
+  }
+
+  .producto-img-container {
+    height: 260px;
+  }
+
+  .talla-botones {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-page {
+    padding: 20px 12px;
+  }
+
+  .main-title {
+    font-size: 1.5rem;
+  }
+
+  .filtros-categorias {
+    gap: 6px;
+  }
+
+  .filtros-categorias button {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0;
+  }
+
+  .producto-img-container {
+    height: 220px;
+  }
+
+  .producto-detalles {
+    padding: 14px;
+  }
+
+  .producto-detalles h3 {
+    font-size: 1rem;
+  }
+
+  .precio {
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+
+  .talla-selector {
+    gap: 6px;
+  }
+
+  .talla-botones {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .btn-talla {
+    padding: 4px 9px;
+    font-size: 11px;
+    min-width: 34px;
+  }
+
+  .btn-carrito {
+    font-size: 13px;
+    padding: 12px;
+  }
 }
