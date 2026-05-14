@@ -35,25 +35,21 @@ export default Login;
 NOTA: este codigo de arriba se conserva porque ha habido que sustituirlo por el codigo que viene debajo. Se sustituye para hacer upgrade al codigo para cookies, pero este codigo (basico) de aqui encima FUNCIONA. Se conserva como codigo de rescate por prevencion de una posible urgencia (sin cookies)*/
 
 import { useForm } from 'react-hook-form';
-import { loginUser } from '../service/authService'; 
-import './Login.css'; 
+import { loginUser } from '../service/authService';
+import './Login.css';
+
+const FORBIDDEN_CHARS = /["'<>\/]/;
 
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data: any) => {
     try {
-      
-      const responseData = await loginUser(data); 
-      
+      const responseData = await loginUser(data);
       console.log('Login exitoso:', responseData);
-
-     
       localStorage.setItem('user', JSON.stringify(responseData.user || responseData));
-      
       alert('¡Sesión iniciada con éxito!');
-      window.location.href = "/"; 
-
+      window.location.href = "/";
     } catch (error) {
       console.error('Error al loguear:', error);
       alert('Error en las credenciales');
@@ -67,22 +63,27 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-group">
             <label>Correo electrónico</label>
-           
-            <input 
-              {...register('correo')} 
-              type="email" 
-              placeholder="email@ejemplo.com" 
-              required 
+            <input
+              {...register('correo', {
+                required: 'El correo es obligatorio',
+                validate: (v) => !FORBIDDEN_CHARS.test(v) || 'El correo no puede contener " \' < > /'
+              })}
+              type="email"
+              placeholder="email@ejemplo.com"
             />
+            {errors.correo && <span className="input-error">{errors.correo.message as string}</span>}
           </div>
           <div className="input-group">
             <label>Contraseña</label>
-            <input 
-              {...register('password')} 
-              type="password" 
-              placeholder="••••••••" 
-              required 
+            <input
+              {...register('password', {
+                required: 'La contraseña es obligatoria',
+                validate: (v) => !FORBIDDEN_CHARS.test(v) || 'La contraseña no puede contener " \' < > /'
+              })}
+              type="password"
+              placeholder="••••••••"
             />
+            {errors.password && <span className="input-error">{errors.password.message as string}</span>}
           </div>
           <button type="submit" className="btn-login">Entrar</button>
         </form>
