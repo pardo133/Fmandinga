@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="main-footer">
       <div className="footer-container">
-        
-       
+
+
         <div className="footer-section about">
           <div className="about-content">
             <h2 className="footer-logo">La Mandinga</h2>
@@ -14,17 +14,17 @@ const Footer = () => {
               Tu marketplace de confianza para productos exclusivos y calidad garantizada.
             </p>
           </div>
-          
-          
+
+
           <div className="social-links">
             <a href="#" aria-label="Facebook"><FaFacebook /></a>
-            <a href="https://www.instagram.com/lamandinga/?hl=es" aria-label="Instagram"><FaInstagram /></a>
+            <a href="https://www.instagram.com/lamandinga/?hl=es" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><FaInstagram /></a>
             <a href="#" aria-label="Twitter"><FaTwitter /></a>
             <a href="#" aria-label="Linkedin"><FaLinkedin /></a>
           </div>
         </div>
 
-        
+
         <div className="footer-section links">
           <h3>Explorar</h3>
           <ul>
@@ -35,7 +35,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        
+
         <div className="footer-section contact">
           <h3>Contacto</h3>
           <p>📍 Calle Falsa 123, Madrid</p>

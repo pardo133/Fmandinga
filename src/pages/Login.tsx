@@ -4,22 +4,18 @@ import { swalOk, swalError } from '../lib/swal';
 import Swal from 'sweetalert2';
 import './Login.css';
 
+const FORBIDDEN_CHARS = /["'<>\/]/;
+
 const Login = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (data: any) => {
     try {
-
       const responseData = await loginUser(data);
-
       console.log('Login exitoso:', responseData);
-
-
       localStorage.setItem('user', JSON.stringify(responseData.user || responseData));
-
       await swalOk('¡Bienvenido!', 'Sesión iniciada correctamente');
       window.location.href = "/";
-
     } catch (error) {
       console.error('Error al loguear:', error);
       swalError('Error al iniciar sesión', 'Comprueba tu correo y contraseña');
@@ -53,20 +49,26 @@ const Login = () => {
           <div className="input-group">
             <label>Correo electrónico</label>
             <input
-              {...register('correo')}
+              {...register('correo', {
+                required: 'El correo es obligatorio',
+                validate: (v) => !FORBIDDEN_CHARS.test(v) || 'El correo no puede contener " \' < > /'
+              })}
               type="email"
               placeholder="email@ejemplo.com"
-              required
             />
+            {errors.correo && <span className="input-error">{errors.correo.message as string}</span>}
           </div>
           <div className="input-group">
             <label>Contraseña</label>
             <input
-              {...register('password')}
+              {...register('password', {
+                required: 'La contraseña es obligatoria',
+                validate: (v) => !FORBIDDEN_CHARS.test(v) || 'La contraseña no puede contener " \' < > /'
+              })}
               type="password"
               placeholder="••••••••"
-              required
             />
+            {errors.password && <span className="input-error">{errors.password.message as string}</span>}
           </div>
           <button type="submit" className="btn-login">Entrar</button>
         </form>

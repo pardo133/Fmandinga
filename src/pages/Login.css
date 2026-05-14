@@ -15,7 +15,7 @@
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(244, 241, 241, 0.1);
     width: 100%;
-    max-width: 400px; 
+    max-width: 400px;
     text-align: center;
 }
 
@@ -47,13 +47,13 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 16px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     transition: border-color 0.3s;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: #76b82a; 
+    border-color: #76b82a;
 }
 
 
@@ -88,4 +88,10 @@
 
 .btn-forgot:hover {
     color: #1a3a1a;
+}
+
+.input-error {
+    color: #e53e3e;
+    font-size: 12px;
+    margin-top: 4px;
 }

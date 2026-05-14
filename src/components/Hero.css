@@ -52,30 +52,41 @@
   gap: 20px;
 }
 
-.btn-filled {
-  padding: 15px 35px;
-  background-color: #76b82a; 
-  color: white;
-  border: none;
+.btn-filled,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 35px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1;
+  font-family: inherit;
   cursor: pointer;
   border-radius: 4px;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.btn-filled {
+  background-color: #76b82a;
+  color: white !important;
+  border: 2px solid #76b82a;
 }
 
 .btn-outline {
-  padding: 15px 35px;
   background: transparent;
   color: white;
   border: 2px solid white;
-  font-weight: 700;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: 0.3s;
 }
 
 .btn-filled:hover {
-  background-color: #65a122;
+  background-color: #1a3a1a;
+  border-color: #1a3a1a;
+  transform: translateY(-2px);
+  color: white !important;
 }
 
 .btn-outline:hover {
@@ -83,36 +94,12 @@
   color: black;
 }
 
-
 @media (max-width: 768px) {
   .hero-title { font-size: 2.5rem; }
   .hero-content { padding: 0 20px; text-align: center; }
   .hero-btns { justify-content: center; }
 }
 
-
-.btn-filled {
-  text-decoration: none;   
-  display: inline-flex;    
-  align-items: center;
-  justify-content: center;
-  background-color: #76b82a; 
-  color: white !important;   
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-filled:hover {
-  background-color: #1a3a1a; 
-  transform: translateY(-2px); 
-  color: white !important;
-}
 .hero-btns a {
-  display: inline-block;
   text-decoration: none;
 }
